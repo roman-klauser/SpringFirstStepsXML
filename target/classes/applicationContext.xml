@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+    <bean name="customerRepository"
+          class="com.romanklauser.repository.HibernateCustomerRepositoryImpl"/>
+
+    <bean name="customerService"
+          class="com.romanklauser.service.CustomerServiceImpl">
+        <property name="customerRepository" ref="customerRepository"/>
+    </bean>
+
+    <bean name="max" class="com.romanklauser.model.Customer">
+        <property name="firstname" value="Max"/>
+    </bean>
+
+    <bean name="moritz" class="com.romanklauser.model.Customer">
+        <property name="firstname" value="Moritz"/>
+    </bean>
+
+
+    <bean name="group" class="com.romanklauser.model.Group">
+        <constructor-arg index="0" ref="max"/>
+        <constructor-arg index="1" ref="moritz"/>
+    </bean>
+
+</beans>
